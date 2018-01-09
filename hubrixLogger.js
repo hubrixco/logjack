@@ -59,6 +59,14 @@ class HubrixLogger{
     }
 
     // TODO: get and set layout, appenders, etc.
+    /*set appenders(){
+        ;
+    }
+
+    set layout(){
+        ;
+    }*/
+
     
     shutdown(){
         log4js.shutdown(this.postShutdown());

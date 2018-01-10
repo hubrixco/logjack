@@ -31,8 +31,8 @@ describe("Logger XML", function () {
 });
 
 // test console with text colored
-describe("Logger colored text", function () {
-    it("outputs log in XML at level: warn", function () {
+describe("Logger colored", function () {
+    it("outputs log in color at level: trace", function () {
         hubrixLogger = new HubrixLogger('console','colored','trace',null).logger;
         hubrixLogger.info('this is just a test');
         hubrixLogger.error('of a basic layout');
@@ -41,8 +41,8 @@ describe("Logger colored text", function () {
 });
 
 // test file with text
-describe("Logger output to file", function () {
-    it("outputs log in XML at level: warn", function () {
+describe("Logger file", function () {
+    it("outputs log to file at level: trace", function () {
         var fileAppenderSettings = new FileAppenderSettings("test.log",10 * 1024,5,false,true);
         //fileAppenderSettings.fileName = "new.log";
 

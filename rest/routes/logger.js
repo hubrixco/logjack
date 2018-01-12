@@ -1,14 +1,25 @@
-var log4js = require('../../../log4js-node');
-var restify = require('restify');
+const log4js = require('../../../log4js-node');
+const Router = require('restify-router').Router;  
+const router = new Router();
 
 // POST
-server.post('/config_globals', function(req, res, next) {
+function configureGlobals(req, res, next) {
     // use the log4js config JSON in req to set global config defaults
     log4js.configure(req);
-});
+}
 
 // POST
-server.post('/config', function(req, res, next) {
+function log(req,res,next){
+    log4js.getLogger()._log(req);
+}
+
+router.get('/logger/config', configureGlobals);  
+router.get('/logger/log', log);  
+
+module.exports = router;  
+
+// POST
+/*server.post('/config', function(req, res, next) {
     log4js.configure(req);
 });
 
@@ -55,5 +66,5 @@ exports.deactivated = function(req, res) {
     log4js.shutdown( function(){
         console.log('shutdown callback');
     })
-};
+};*/
 

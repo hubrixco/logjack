@@ -14,16 +14,15 @@ server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });*/
 
-var restify = require('restify');
+const restify = require('restify');
+const router = require('./routes/logger');  
 
-/*function respond(req, res, next) {
-  res.send('hello ' + req.params.name);
-  next();
-}*/
+const server = restify.createServer({
+      name: 'LogJack'
+});
 
-var server = restify.createServer();
-//server.get('/hello/:name', respond);
-//server.head('/hello/:name', respond);
+// add the routes from logger api file
+router.applyRoutes(server);
 
 server.listen(8080, function() {
   console.log('%s listening at %s', server.name, server.url);

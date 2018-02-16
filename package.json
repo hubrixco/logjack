@@ -1,10 +1,10 @@
 {
-  "name": "rest",
+  "name": "logjack",
   "version": "1.0.0",
   "description": "rest api for logger",
   "main": "index.js",
   "scripts": {
-    "test": "node ./node_modules/mocha/bin/mocha"
+    "test": "mocha"
   },
   "author": "",
   "license": "ISC"

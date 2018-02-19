@@ -1,4 +1,4 @@
-require('../hubrixLogger');
+require('../jackLogger');
 
 // POST
 exports.configuration_globals = function(req, res) {

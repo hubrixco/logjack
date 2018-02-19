@@ -7,5 +7,9 @@
     "test": "mocha"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "connect": "^3.6.6",
+    "swagger-tools": "^0.10.3"
+  }
 }

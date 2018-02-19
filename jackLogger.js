@@ -1,7 +1,7 @@
 const jsonLayout = require('./layouts/json');
 const xmlLayout = require('./layouts/xml');
 
-var log4js = require('../../log4js-node');
+var log4js = require('../log4js-node');
 
 class JackLogger{
     constructor(configuration){

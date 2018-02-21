@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "connect": "^3.6.6",
+    "mocha": "^5.0.1",
     "swagger-tools": "^0.10.3"
   }
 }

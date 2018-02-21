@@ -1,15 +1,10 @@
 ---
 swagger: "2.0"
 info:
-  description: "A general-purpose logging API written in node.js, and based on log4js-node.\n\
-    \nSupports all <a>log4js-node</a> functionality, extending it to include JSON\
-    \ and XML output.\n<h2>Object Definitions</h2> <h3>Appenders</h3> <p>Write a simpler\
-    \ description of log4js-node appenders</p> <h3>Categories</h3> <p>Write a simpler\
-    \ description of log4js-node categories</p> <h3>Layouts</h3> <p>Write a simpler\
-    \ description of log4js-node layouts.</p>\n<b>NOTE Explain how different appenders\
-    \ can have different number of properties with examples (maybe link to log4js-node\
-    \ documentation?)</b>"
-  version: "1.0.0"
+  description: "A general-purpose logging API written in node.js, and based on [log4js-node](https://github.com/log4js-node/log4js-node).\n\
+    Supports all functionality, extending it to include JSON and XML output.\n\nFor\
+    \ complete documentation visit https://logjack.hubrix.io/docs"
+  version: "0.9.0"
   title: "Logjack"
   contact:
     email: "devops@hubrix.co"
@@ -17,31 +12,13 @@ info:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 host: "logjack-sandbox.hubrix.io"
-basePath: "/logjack/1.0.0"
+basePath: "/0.9.0"
 schemes:
 - "https"
 paths:
-  /configure:
-    post:
-      summary: "Accepts the configuration object to initialize the logger with desired\
-        \ options (categories, appenders, etc.)"
-      operationId: "configure"
-      parameters:
-      - in: "body"
-        name: "configuration"
-        description: "configuration object"
-        required: false
-        schema:
-          $ref: "#/definitions/Config"
-      responses:
-        200:
-          description: "logger configured successfully."
-        400:
-          description: "invalid input, configuration object invalid."
-      x-swagger-router-controller: "Default"
   /log:
     post:
-      summary: "Logs the message based on current configuration object."
+      summary: "Logs the message based on current configuration JSON."
       operationId: "log"
       parameters:
       - name: "message"
@@ -50,7 +27,7 @@ paths:
         type: "string"
       - in: "body"
         name: "config"
-        description: "configuration object"
+        description: "configuration JSON"
         required: true
         schema:
           $ref: "#/definitions/Config"
@@ -60,51 +37,7 @@ paths:
         400:
           description: "invalid input, empty message"
         401:
-          description: "invalid input, configuration object invalid"
-      x-swagger-router-controller: "Default"
-  /current_level/{appenderName}:
-    get:
-      summary: "Returns the current log level for an appender."
-      operationId: "getCurrentLevel"
-      parameters:
-      - name: "appenderName"
-        in: "path"
-        required: true
-        type: "string"
-      responses:
-        200:
-          description: "Ok."
-        404:
-          description: "invalid input, appenderName not found."
-      x-swagger-router-controller: "Default"
-  /current_level:
-    post:
-      summary: "Sets the current log level for an appender."
-      operationId: "setCurrentLevel"
-      parameters:
-      - name: "level"
-        in: "query"
-        required: true
-        type: "string"
-      - name: "appenderName"
-        in: "query"
-        required: true
-        type: "string"
-      - in: "body"
-        name: "config"
-        description: "configuration object"
-        required: true
-        schema:
-          $ref: "#/definitions/Config"
-      responses:
-        200:
-          description: "Current level set successfully."
-        400:
-          description: "invalid input, level invalid."
-        401:
-          description: "invalid input, appenderName invalid."
-        402:
-          description: "invalid input, configuration object invalid."
+          description: "invalid input, configuration JSON invalid"
       x-swagger-router-controller: "Default"
 definitions:
   Config:
@@ -120,7 +53,7 @@ definitions:
     example:
       categories:
         default:
-          appenders: "out,console"
+          appenders: "out"
           level: "error"
       appenders:
         out:
@@ -160,7 +93,7 @@ definitions:
         $ref: "#/definitions/DefaultCategories"
     example:
       default:
-        appenders: "out,console"
+        appenders: "out"
         level: "error"
   DefaultCategories:
     type: "object"
@@ -175,7 +108,7 @@ definitions:
       level:
         type: "string"
     example:
-      appenders: "out,console"
+      appenders: "out"
       level: "error"
   Layout:
     type: "object"

@@ -18,7 +18,7 @@ function addLayout(){
         xw.endDocument();
      
         //console.log(xw.toString());
-        return xw.toString() + config.separator;
+        return xw.toString();
     });
 }
 

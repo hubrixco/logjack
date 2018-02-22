@@ -1,11 +1,14 @@
 {
   "name": "logjack",
-  "version": "1.0.0",
+  "version": "0.9.0",
   "description": "rest api for logger",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "connect": "^3.6.6"
+  }
 }

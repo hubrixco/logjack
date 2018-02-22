@@ -1,0 +1,121 @@
+---
+swagger: "2.0"
+info:
+  description: "A general-purpose logging API written in node.js, and based on [log4js-node](https://github.com/log4js-node/log4js-node).\n\
+    Supports all functionality, extending it to include JSON and XML output.\n\nFor\
+    \ complete documentation visit https://logjack.hubrix.io/docs"
+  version: "0.9.0"
+  title: "Logjack"
+  contact:
+    email: "devops@hubrix.co"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "logjack-sandbox.hubrix.io"
+basePath: "/0.9.0"
+schemes:
+- "https"
+paths:
+  /log:
+    post:
+      summary: "Logs the message based on current configuration JSON."
+      operationId: "log"
+      parameters:
+      - name: "message"
+        in: "query"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "config"
+        description: "configuration JSON"
+        required: true
+        schema:
+          $ref: "#/definitions/Config"
+      responses:
+        200:
+          description: "message logged successfully"
+        400:
+          description: "invalid input, empty message"
+        401:
+          description: "invalid input, configuration JSON invalid"
+      x-swagger-router-controller: "Default"
+definitions:
+  Config:
+    type: "object"
+    required:
+    - "appenders"
+    - "categories"
+    properties:
+      appenders:
+        $ref: "#/definitions/Appenders"
+      categories:
+        $ref: "#/definitions/Categories"
+    example:
+      categories:
+        default:
+          appenders: "out"
+          level: "error"
+      appenders:
+        out:
+          type: "file"
+          filename: "mylog.log"
+  Appenders:
+    type: "object"
+    required:
+    - "out"
+    properties:
+      out:
+        $ref: "#/definitions/AppenderType"
+    example:
+      out:
+        type: "file"
+        filename: "mylog.log"
+  AppenderType:
+    type: "object"
+    required:
+    - "type"
+    properties:
+      type:
+        type: "string"
+      filename:
+        type: "string"
+      layout:
+        $ref: "#/definitions/Layout"
+    example:
+      type: "file"
+      filename: "mylog.log"
+  Categories:
+    type: "object"
+    required:
+    - "default"
+    properties:
+      default:
+        $ref: "#/definitions/DefaultCategories"
+    example:
+      default:
+        appenders: "out"
+        level: "error"
+  DefaultCategories:
+    type: "object"
+    required:
+    - "appenders"
+    - "level"
+    properties:
+      appenders:
+        type: "array"
+        items:
+          type: "string"
+      level:
+        type: "string"
+    example:
+      appenders: "out"
+      level: "error"
+  Layout:
+    type: "object"
+    required:
+    - "type"
+    properties:
+      type:
+        type: "string"
+    example:
+      type: "colored"

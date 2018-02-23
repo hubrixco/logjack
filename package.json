@@ -1,7 +1,7 @@
 {
   "name": "logjack",
   "version": "0.9.0",
-  "description": "rest api for logger",
+  "description": "A general-purpose logging API written in node.js, based on log4js-node",
   "main": "index.js",
   "scripts": {
     "test": "mocha"

@@ -1,4 +1,4 @@
-const log4js = require('../log4js-node');
+const log4js = require('log4js');
 const XMLWriter = require('xml-writer');
 
 function addLayout(){

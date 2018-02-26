@@ -42,33 +42,37 @@ This initial release of Logjack adds very little to log4js-node. The key differe
 Future releases of Logjack will introduce more significant changes. But we are working with the log4js-node maintainers to refactor
 these features as log4js-node extensions, rather than continuing to develop a standalone logger.
 
-> **Bottom line:** if you desperately need XML/JSON output or a REST API *right now*, help yourself to our code. If not, you're much better off using
+> **Bottom line:** if you desperately need XML/JSON output and/or a REST API *right now*, please help yourself to our code. If not, you're much better off using
 [log4js-node](https://github.com/log4js-node/log4js-node).
+
+## Basics
+
+Except for the differences noted above, everything else in Logjack behaves as described in the [log4js-node documentation](https://log4js-node.github.io/log4js-node/index.html).
 
 ## Appenders
 
-Represent the output type for log events. They may write events to files, send emails, store them in a database, etc. Most appenders use layouts to serialise the events to strings for output. (Examples: file, console, stdout, etc.).
+Appenders represent the output type for log events. They may write events to files, send emails, store them in a database, etc. Most appenders use *Layouts* to serialize events to strings for output (Examples: file, console, `stdout`).
 
 See the [log4js-node documentation](https://log4js-node.github.io/log4js-node/appenders.html) for a complete list of Appenders and their options. 
 
 ## Layouts
 
-Describe the output format for an Appender.
+Layouts describe the output format for an Appender.
 
 Built-in:
 
-- JSON
-- XML
-- Basic (text)
-- Colored (text)
-- Message Pass-through (This layout just formats the log event data, and does not output a timestamp, level or category)
-- Pattern The pattern string can contain any characters, but sequences beginning with % will be replaced with values taken from the log event, and other environmental values.Format for specifiers is %[padding].[truncation][field]{[format]} - padding and truncation are optional, and format only applies to a few tokens (notably, date). e.g. %5.10p - left pad the log level by 5 characters, up to a max of 10
+- **JSON**
+- **XML**
+- **Basic** (text)
+- **Colored** (text)
+- **Message Pass-through** (This layout just formats the log event data, and does not output a timestamp, level or category)
+- **Pattern** The pattern string can contain any characters, but sequences beginning with % will be replaced with values taken from the log event, and other environmental values.Format for specifiers is %[padding].[truncation][field]{[format]} - padding and truncation are optional, and format only applies to a few tokens (notably, date). e.g. %5.10p - left pad the log level by 5 characters, up to a max of 10
 
 See the [log4js-node documentation](https://log4js-node.github.io/log4js-node/layouts.html) for details (including log Fields and substitution strings).
 
 ## Categories
 
-A mechanism to define multiple appenders for the logger. Logjack version 1.0.0 supports a single category name (&quot;default&quot;).
+A mechanism to define multiple Appenders for the logger. Logjack version 1.0.0 supports a single Category name: `default`.
 
 ## Example JSON Configurations
 
@@ -118,7 +122,10 @@ config = {
 ```
 config = {
    appenders: {
-     out: { type:'file', filename:'testfile.log', maxLogSize:10485760, backups:5, compress:false }
+     out: {
+		type:'file', filename:'testfile.log',
+		maxLogSize:10485760, backups:5, compress:false
+	 }
    },
 
    categories: {

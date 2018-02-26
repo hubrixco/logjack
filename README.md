@@ -31,13 +31,27 @@ Swagger-ui is available on http://localhost:8080/docs
 
 You can change host and port by editing `restapi/index.js` - the `serverHost` and `serverPort` variables respectively.
 
-## JSON Configuration Definitions
+## Differences from log4js-node
 
-### Appenders
+This initial release of Logjack adds very little to log4js-node. The key differences are:
+- JSON Layout support
+- XML Layout support
+- REST API (with just one method: `log`)
+- Requires Node.js **v8.x** (log4js works fine on Node.js v4.x)
+
+Future releases of Logjack will introduce more significant changes. But we are working with the log4js-node maintainers to refactor
+these features as log4js-node extensions, rather than continuing to develop a standalone logger.
+
+> **Bottom line:** if you desperately need XML/JSON output or a REST API *right now*, help yourself to our code. If not, you're much better off using
+[log4js-node](https://github.com/log4js-node/log4js-node).
+
+## Appenders
 
 Represent the output type for log events. They may write events to files, send emails, store them in a database, etc. Most appenders use layouts to serialise the events to strings for output. (Examples: file, console, stdout, etc.).
 
-### Layouts
+See the [log4js-node documentation](https://log4js-node.github.io/log4js-node/appenders.html) for a complete list of Appenders and their options. 
+
+## Layouts
 
 Describe the output format for an Appender.
 
@@ -50,21 +64,7 @@ Built-in:
 - Message Pass-through (This layout just formats the log event data, and does not output a timestamp, level or category)
 - Pattern The pattern string can contain any characters, but sequences beginning with % will be replaced with values taken from the log event, and other environmental values.Format for specifiers is %[padding].[truncation][field]{[format]} - padding and truncation are optional, and format only applies to a few tokens (notably, date). e.g. %5.10p - left pad the log level by 5 characters, up to a max of 10
 
-Fields can be any of:
-
-- %r time in toLocaleTimeString format
-- %p log level
-- %c log category
-- %h hostname
-- %m log data
-- %d date, formatted - default is ISO8601, format options are: ISO8601, ISO8601\_WITH\_TZ\_OFFSET, ABSOLUTE, DATE, or any string compatible with the [date-format](https://www.npmjs.com/package/date-format) library. e.g. %d{DATE}, %d{yyyy/MM/dd-hh.mm.ss}
-- %% % - for when you want a literal % in your output
-- %n newline
-- %z process id (from pid)
-- %x{&lt;tokenname&gt;} add dynamic tokens to your log. Tokens are specified in the tokens parameter.
-- %X{&lt;tokenname&gt;} add values from the Logger context. Tokens are keys into the context values.
-- %[ start a coloured block (colour will be taken from the log level, similar to colouredLayout)
-- %] end a coloured block
+See the [log4js-node documentation](https://log4js-node.github.io/log4js-node/layouts.html) for details (including log Fields and substitution strings).
 
 ## Categories
 
@@ -75,19 +75,13 @@ A mechanism to define multiple appenders for the logger. Logjack version 1.0.0 s
 **Output to console in JSON format:**
 ```
 varconfig = {
-
    appenders: {
-
-     out: { type:&#39;console&#39;, layout: { type:&#39;json&#39;} }
-
+     out: { type:'console', layout: { type:'json'} }
    },
 
    categories: {
-
-     default: { appenders: [&#39;out&#39;], level:&#39;info&#39; }
-
+     default: { appenders: ['out'], level:'info' }
    }
-
  };
 ```
 
@@ -95,19 +89,13 @@ varconfig = {
 
 ```
 config = {
-
    appenders: {
-
-     out: { type:&#39;console&#39;, layout: { type:&#39;xml&#39;} }
-
+     out: { type:'console', layout: { type:'xml'} }
    },
 
    categories: {
-
-     default: { appenders: [&#39;out&#39;], level:&#39;warn&#39; }
-
+     default: { appenders: ['out'], level:'warn' }
    }
-
  };
  ```
 
@@ -115,19 +103,13 @@ config = {
 
 ```
 config = {
-
    appenders: {
-
-     out: { type:&#39;console&#39;, layout: { type:&#39;colored&#39;} }
-
+     out: { type:'console', layout: { type:'colored'} }
    },
 
    categories: {
-
-     default: { appenders: [&#39;out&#39;], level:&#39;trace&#39; }
-
+     default: { appenders: ['out'], level:'trace' }
    }
-
  };
  ```
 
@@ -135,37 +117,15 @@ config = {
 
 ```
 config = {
-
    appenders: {
-
-     out: { type:&#39;file&#39;, filename:&#39;testfile.log&#39;, maxLogSize:10485760, backups:5,    compress:false }
-
+     out: { type:'file', filename:'testfile.log', maxLogSize:10485760, backups:5, compress:false }
    },
 
    categories: {
-
-     default: { appenders: [&#39;out&#39;], level:&#39;trace&#39; }
-
+     default: { appenders: ['out'], level:'trace' }
    }
-
  };
  ```
-
-**Complete list of file options**
-
-- type - &quot;file&quot;
-- filename - string - the path of the file where you want your logs written.
-- maxLogSize - integer (optional) - the maximum size (in bytes) for the log file. If not specified, then no log rolling will happen.
-- backups - integer (optional, default value = 5) - the number of old log files to keep during log rolling.
-- layout - (optional, defaults to basic layout: timestamp, level, category, followed by the formatted log event data)
-
-Any other configuration parameters will be passed to the underlying [streamroller](https://github.com/nomiddlename/streamroller) implementation (see also [node.js core file stream](https://nodejs.org/docs/latest-v8.x/api/stream.html)):
-
-- encoding - string (default &quot;utf-8&quot;)
-- mode- integer (default 0644)
-- flags - string (default &#39;a&#39;)
-- compress - boolean (default false) - compress the backup files during rolling (backup files will have .gz extension)
-- keepFileExt - boolean (default false) - preserve the file extension when rotating log files (log becomes 1.log instead of log.1)
 
 ## Apache 2.0 license
 

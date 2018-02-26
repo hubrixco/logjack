@@ -11,17 +11,23 @@ The REST API works using the single endpoint ‘/log’ which requires two param
   - logger configuration options (JSON)
 
 ## Quickstart
-```npm install @hubrixco/logjack
+```
+npm install @hubrixco/logjack
 cd logjack
-npm test``` 
+npm test
+``` 
 
 ## REST API Server
-```cd logjack
+```
+cd logjack
 node restapi/index.js
 ```
+
 You should see:
-```Your server is listening on port 8080 (http://localhost:8080)
-Swagger-ui is available on http://localhost:8080/docs```
+```
+Your server is listening on port 8080 (http://localhost:8080)
+Swagger-ui is available on http://localhost:8080/docs
+```
 
 You can change host and port by editing `restapi/index.js` - the `serverHost` and `serverPort` variables respectively.
 
@@ -87,7 +93,8 @@ varconfig = {
 
 **Output to console in XML format:**
 
-```config = {
+```
+config = {
 
    appenders: {
 
@@ -101,11 +108,13 @@ varconfig = {
 
    }
 
- };```
+ };
+ ```
 
 **Output to console in colored text format:**
 
-```config = {
+```
+config = {
 
    appenders: {
 
@@ -119,11 +128,13 @@ varconfig = {
 
    }
 
- };```
+ };
+ ```
 
 **Output to file (options defined following appenders.out.type property):**
 
-```config = {
+```
+config = {
 
    appenders: {
 
@@ -137,7 +148,8 @@ varconfig = {
 
    }
 
- };```
+ };
+ ```
 
 **Complete list of file options**
 

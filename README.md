@@ -47,7 +47,16 @@ You can change host and port by editing `restapi/index.js` - the `serverHost` an
 
 The one and only endpoint will be at `http://localhost:8080/v1.0.0/log`
 
+For a quick test of the API server, open another terminal on the same machine and use **curl**:
 
+```
+curl -H "Accept:application/json" \
+  -H "Content-Type: application/json" \
+  "http://localhost:8080/v1.0.0/log" -X POST -d \
+'{"message":"The moons of Bar Foo!","appenders":{"out":{"type":"console","layout":{"type":"json" }}},"categories":{"default":{"appenders":["out"],"level":"info"}}}'
+```
+
+You should see lines of JSON log output appear in your API server's console.
 
 The (very terse) REST API documentation is [here](https://logjack.hubrix.io/logjack/v1.0.0/).
 
@@ -98,11 +107,12 @@ The Categories feature that allows multiple Appenders to be instantiated in log4
 
 Only one Logger is created, using the `default` Category.
 
-## Example Configurations
+## Example Payloads
 
 **Output to console in JSON format:**
 ```
-varconfig = {
+var payload = {
+   message: 'The best way to predict the future is to invent it.',
    appenders: {
      out: { type:'console', layout: { type:'json'} }
    },
@@ -115,7 +125,8 @@ varconfig = {
 **Output to console in XML format:**
 
 ```
-config = {
+payload = {
+   message: 'Waiter, I believe my soup can fly!',
    appenders: {
      out: { type:'console', layout: { type:'xml'} }
    },
@@ -128,7 +139,8 @@ config = {
 **Output to console in colored text format:**
 
 ```
-config = {
+payload = {
+   message: 'Avocados. Just because.',
    appenders: {
      out: { type:'console', layout: { type:'colored'} }
    },
@@ -141,7 +153,8 @@ config = {
 **Output to file (options defined following appenders.out.type property):**
 
 ```
-config = {
+payload = {
+   message: 'Your tax dollars at work. Not.',
    appenders: {
      out: {
 		type:'file', filename:'testfile.log',
@@ -153,7 +166,7 @@ config = {
    }
  };
 ```
- 
+
 | ![Hubrix](https://www.hubrix.co/wp-content/uploads/2018/01/Egg.v2.tm_.600x600.transbg-150x150.png "Coded with love by Hubrix") |
 |--------------------------------------------------------------------------------------------------------------------------------|
 |                                                 ** Hubrix SAS ** Paris, France                                                 |

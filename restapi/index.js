@@ -8,8 +8,8 @@ var app = require('connect')();
 var swaggerTools = require('swagger-tools');
 var jsyaml = require('js-yaml');
 
-var serverPort = 3001;
-var serverHost = '0.0.0.0';
+var serverPort = 8080;
+var serverHost = 'localhost';
 
 const TESTENV = process.env.TEST || false;
 if(TESTENV)
@@ -30,8 +30,6 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
 
   // Interpret Swagger resources and attach metadata to request - must be first in swagger-tools middleware chain
   app.use(middleware.swaggerMetadata());
-
-  //app.use(errorHandler);
 
   // Route validated requests to appropriate controller
   app.use(middleware.swaggerRouter(options));

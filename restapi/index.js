@@ -8,8 +8,12 @@ var app = require('connect')();
 var swaggerTools = require('swagger-tools');
 var jsyaml = require('js-yaml');
 
-var serverPort = 3000;
-var serverHost = '127.0.0.1';
+var serverPort = 3001;
+var serverHost = '0.0.0.0';
+
+const TESTENV = process.env.TEST || false;
+if(TESTENV)
+  serverHost = 'localhost';
 
 // swaggerRouter configuration
 var options = {
@@ -20,11 +24,6 @@ var options = {
 // The Swagger document (require it, build it programmatically, fetch it from a URL, ...)
 var spec = fs.readFileSync(path.join(__dirname,'api/swagger.yaml'), 'utf8');
 var swaggerDoc = jsyaml.safeLoad(spec);
-
-// global error handler
-/*function errorHandler(err, req, res, next) {
-   console.log('ERROR: ');
-}*/
 
 // Initialize the Swagger middleware
 swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {

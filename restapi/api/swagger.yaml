@@ -21,10 +21,6 @@ paths:
       summary: "Log a message"
       operationId: "log"
       parameters:
-      - name: "message"
-        in: "query"
-        required: true
-        type: "string"
       - in: "body"
         name: "config"
         description: "configuration JSON"
@@ -46,6 +42,8 @@ definitions:
     - "appenders"
     - "categories"
     properties:
+      message:
+        type: "string"      
       appenders:
         $ref: "#/definitions/Appenders"
       categories:

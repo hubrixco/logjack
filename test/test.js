@@ -26,7 +26,7 @@ describe("Logger REST API", function(){
     };
 
     return chai.request(app)
-      .post('/v1.0.0/log?message="Testing!"') //TODO: get version from YAML somehow...
+      .post('/v1.0.0/log') //TODO: get version from YAML somehow...
       .send(config)
       .then(function(res) {
         expect(res).to.have.status(200);
@@ -35,16 +35,17 @@ describe("Logger REST API", function(){
 });
 
 // POST - Log Exception Path with invalid JSON
-/*describe("Logger REST API Invalid Input: JSON", function(){
-  it('calls /log with no appender', function() {
+describe("Logger REST API Invalid Input: JSON", function(){
+  it('calls /log with no category', function() {
     let config = {
+      message: 'This is the message!',
       appenders: {
         out: { type: 'console', layout: { type: 'json'} }
       }
     };
 
     return chai.request(app)
-      .post('/v1.0.0/log?message="Testing!"') //TODO: get version from YAML somehow...
+      .post('/v1.0.0/log') //TODO: get version from YAML somehow...
       .send(config)
       .then(function(res) {
         expect(res).to.have.status(500);
@@ -79,6 +80,7 @@ describe("Logger REST API Invalid Inpput: no message", function(){
 describe("Logger JSON", function () {
     it("outputs log in JSON at level: trace", function () {
       let config = {
+        message: 'This is the message!',
         appenders: {
           out: { type: 'console', layout: { type: 'json'} }
         },
@@ -192,4 +194,3 @@ function removeFile(filename){
     //console.log('File deleted!');
   });
 }
-*/

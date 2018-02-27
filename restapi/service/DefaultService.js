@@ -11,8 +11,8 @@ var JackLogger = require("../../jackLogger.js");
  **/
 exports.log = function(configuration) {
   let message = JSON.stringify(configuration.message);
-  console.log('MESSAGE: ' + message);
-  
+  //console.log('MESSAGE: ' + configuration.message);
+
   let jackLogger = new JackLogger(configuration).logger;
 
   let level = configuration.categories.default.level;

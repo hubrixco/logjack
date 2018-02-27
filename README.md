@@ -1,5 +1,7 @@
 # logjack
-A general-purpose logging API written in node.js, and based on [log4js-node](https://github.com/log4js-node/log4js-node)
+A general-purpose logging API based on [log4js-node](https://github.com/log4js-node/log4js-node)
+
+![node](https://img.shields.io/node/v/passport.svg)
 
 ## Summary
 Supports all log4js-node functionality, plus:
@@ -15,7 +17,16 @@ The REST API works using the single endpoint ‘/log’ which requires two param
 npm install @hubrixco/logjack
 cd node_modules/@hubrixco/logjack
 npm test
-``` 
+```
+
+If all the tests pass, you have a valid, working Logjack install. Then, in your code:
+
+```
+var lj = require('@hubrixco/logjack');
+var logger = lj.getLogger();
+logger.level = 'info';
+logger.warn("Oh no, ran out of espresso");
+```
 
 ## REST API Server
 ```
@@ -30,6 +41,10 @@ Swagger-ui is available on http://localhost:8080/docs
 ```
 
 You can change host and port by editing `restapi/index.js` - the `serverHost` and `serverPort` variables respectively.
+
+The one and only endpoint will be at ``
+
+The (very terse) REST API documentation is [here](https://logjack.hubrix.io/logjack/v1.0.0/).
 
 ## Differences from log4js-node
 
@@ -74,7 +89,9 @@ See the [log4js-node documentation](https://log4js-node.github.io/log4js-node/la
 
 ## Categories
 
-A mechanism to define multiple Appenders for the logger. Logjack version 1.0.0 supports a single Category name: `default`.
+A mechanism to define multiple Appenders for the logger. Lifted verbatim from the [log4js-node documentation](https://log4js-node.github.io/log4js-node/terms.html):
+
+> `Category` - a label for grouping log events. This can be based on module (e.g. ‘auth’, ‘payment’, ‘http’), or anything you like. Log events with the same category will go to the same appenders. Log4js supports a simple hierarchy for categories, using dots to separate layers - for example, log events in the category ‘myapp.submodule’ will use the appenders defined for ‘myapp’ if none are defined for ‘myapp.submodule’. The category for log events is defined when you get a Logger from log4js (`log4js.getLogger('somecategory')`).
 
 ## Example Configurations
 
@@ -84,7 +101,6 @@ varconfig = {
    appenders: {
      out: { type:'console', layout: { type:'json'} }
    },
-
    categories: {
      default: { appenders: ['out'], level:'info' }
    }
@@ -98,7 +114,6 @@ config = {
    appenders: {
      out: { type:'console', layout: { type:'xml'} }
    },
-
    categories: {
      default: { appenders: ['out'], level:'warn' }
    }
@@ -112,7 +127,6 @@ config = {
    appenders: {
      out: { type:'console', layout: { type:'colored'} }
    },
-
    categories: {
      default: { appenders: ['out'], level:'trace' }
    }
@@ -129,7 +143,6 @@ config = {
 		maxLogSize:10485760, backups:5, compress:false
 	 }
    },
-
    categories: {
      default: { appenders: ['out'], level:'trace' }
    }

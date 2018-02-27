@@ -4,7 +4,7 @@ info:
   description: "A general-purpose logging API based on [log4js-node](https://github.com/log4js-node/log4js-node).\n\
     Supports all log4js-node functionality, extending it to include JSON and XML output.\n\nFor\
     \ complete documentation visit https://logjack.hubrix.io/"
-  version: "0.9.6"
+  version: "1.0.0"
   title: "Logjack"
   contact:
     email: "devops@hubrix.co"

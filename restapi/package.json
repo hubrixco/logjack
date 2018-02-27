@@ -1,6 +1,6 @@
 {
   "name": "logjack",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "A general-purpose logging API written in node.js, and based on log4js-node.  Supports all <a>log4js-node</a> functionality, extending it to include JSON and XML output. <h2>Object Definitions</h2> <h3>Appenders</h3> <p>Write a simpler description of log4js-node appenders</p> <h3>Categories</h3> <p>Write a simpler description of log4js-node categories</p> <h3>Layouts</h3> <p>Write a simpler description of log4js-node layouts.</p> <b>NOTE Explain how different appenders can have different number of properties with examples (maybe link to log4js-node documentation?)</b>",
   "main": "index.js",
   "scripts": {

@@ -1,16 +1,21 @@
 # logjack
 A general-purpose logging API based on [log4js-node](https://github.com/log4js-node/log4js-node)
 
+![GitHub release](https://img.shields.io/github/release/hubrixco/logjack.svg)
+[![GitHub license](https://img.shields.io/github/license/hubrixco/logjack.svg)](https://github.com/hubrixco/logjack/blob/master/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/hubrixco/logjack.svg)](https://github.com/hubrixco/logjack/issues)
 ![node](https://img.shields.io/node/v/passport.svg)
+[![npm (scoped)](https://img.shields.io/npm/v/@hubrixco/logjack.svg)](https://www.npmjs.com/package/@hubrixco/logjack)
+[![Twitter Follow](https://img.shields.io/twitter/follow/hubrixco.svg?style=social&logo=twitter&label=Follow)](https://twitter.com/intent/follow?screen_name=hubrixco)
 
 ## Summary
 Supports all log4js-node functionality, plus:
   - JSON and XML output (Layouts)
   - A simple REST API
 
-The REST API works using the single endpoint ‘/log’ which requires two parameters: 
-  - message to be logged (String)
-  - logger configuration options (JSON)
+The REST API works using the single endpoint `/log` which requires a JSON payload: 
+  - message to be logged
+  - logger configuration options
 
 ## Quickstart
 ```

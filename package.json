@@ -9,7 +9,10 @@
   },
   "author": "Hubrix <devops@hubrix.co> (https://www.hubrix.co/)",
   "license": "Apache-2.0",
-  "dependencies": {
+  "engines": {
+          "node": ">=8.9.4 <9.0"
+    },
+    "dependencies": {
     "chai": "^4.1.2",
     "chai-http": "^3.0.0",
     "connect": "^3.6.6",

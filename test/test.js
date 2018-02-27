@@ -12,7 +12,6 @@ const app = require('../restapi/index.js'); // Our app
 
 const JackLogger = require("../jackLogger.js"); 
 
-
 // POST - Log happy path
 describe("Logger REST API", function(){
   it('calls /log to output at level: trace', function() {
@@ -26,7 +25,7 @@ describe("Logger REST API", function(){
     };
 
     return chai.request(app)
-      .post('/0.9.0/log?message="Testing!"') //TODO: get version from YAML somehow...
+      .post('/v1.0.0/log?message="Testing!"') //TODO: get version from YAML somehow...
       .send(config)
       .then(function(res) {
         expect(res).to.have.status(200);
@@ -44,7 +43,7 @@ describe("Logger REST API Invalid Input: JSON", function(){
     };
 
     return chai.request(app)
-      .post('/0.9.0/log?message="Testing!"') //TODO: get version from YAML somehow...
+      .post('/v1.0.0/log?message="Testing!"') //TODO: get version from YAML somehow...
       .send(config)
       .then(function(res) {
         expect(res).to.have.status(500);
@@ -56,7 +55,7 @@ describe("Logger REST API Invalid Input: JSON", function(){
 });
 
 // POST - Log Exception Path with no message param
-/*describe("Logger REST API Invalid Inpput: no message", function(){
+describe("Logger REST API Invalid Inpput: no message", function(){
   it('calls /log with no message', function() {
     let config = {
       appenders: {
@@ -68,13 +67,13 @@ describe("Logger REST API Invalid Input: JSON", function(){
     };
 
     return chai.request(app)
-      .post('/0.9.0/log') 
+      .post('/v1.0.0/log') 
       .send(config)
       .then(function(res) {
         expect(res).to.have.status(200);
       })
   });
-});*/
+});
 
 describe("Logger JSON", function () {
     it("outputs log in JSON at level: trace", function () {

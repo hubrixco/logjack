@@ -12,7 +12,7 @@ info:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 host: "logjack.hubrix.io"
-basePath: "/logjack/v1.0.0/restapi/"
+basePath: "/v1.0.0"
 schemes:
 - "https"
 paths:
@@ -37,7 +37,7 @@ paths:
         400:
           description: "invalid input, empty message"
         401:
-          description: "invalid input, configuration JSON invalid"
+          description: "invalid input, configuration invalid"
       x-swagger-router-controller: "Default"
 definitions:
   Config:

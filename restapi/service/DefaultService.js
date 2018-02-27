@@ -9,9 +9,12 @@ var JackLogger = require("../../jackLogger.js");
  * config Config configuration object
  * no response value expected for this operation
  **/
-exports.log = function(message,configuration) {
-
+exports.log = function(configuration) {
+  let message = JSON.stringify(configuration.message);
+  console.log('MESSAGE: ' + message);
+  
   let jackLogger = new JackLogger(configuration).logger;
+
   let level = configuration.categories.default.level;
 
   if(jackLogger.isLevelEnabled(level)){

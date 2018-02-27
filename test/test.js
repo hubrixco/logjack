@@ -16,6 +16,7 @@ const JackLogger = require("../jackLogger.js");
 describe("Logger REST API", function(){
   it('calls /log to output at level: trace', function() {
     let config = {
+      message: 'This is the message!',
       appenders: {
         out: { type: 'console', layout: { type: 'json'} }
       },
@@ -34,7 +35,7 @@ describe("Logger REST API", function(){
 });
 
 // POST - Log Exception Path with invalid JSON
-describe("Logger REST API Invalid Input: JSON", function(){
+/*describe("Logger REST API Invalid Input: JSON", function(){
   it('calls /log with no appender', function() {
     let config = {
       appenders: {
@@ -191,3 +192,4 @@ function removeFile(filename){
     //console.log('File deleted!');
   });
 }
+*/

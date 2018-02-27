@@ -45,7 +45,7 @@ these features as log4js-node extensions, rather than continuing to develop a st
 > **Bottom line:** if you desperately need XML/JSON output and/or a REST API *right now*, please help yourself to our code. If not, you're much better off using
 [log4js-node](https://github.com/log4js-node/log4js-node).
 
-You can read about our future plans for Logjack <a target="_blank" href="https://www.hubrix.co/TODO">here</a>.
+You can read about our future plans for Logjack <a target="_blank" href="https://www.hubrix.co/2018/02/hubrix-release-logjack/">here</a>.
 
 ## Basics
 

@@ -1,6 +1,6 @@
 {
   "name": "@hubrixco/logjack",
-  "version": "0.9.5",
+  "version": "0.9.6",
   "description": "A general-purpose logging API based on log4js-node",
   "main": "index.js",
   "repository": "github:hubrixco/logjack",

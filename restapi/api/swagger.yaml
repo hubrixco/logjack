@@ -1,24 +1,24 @@
 ---
 swagger: "2.0"
 info:
-  description: "A general-purpose logging API written in node.js, and based on [log4js-node](https://github.com/log4js-node/log4js-node).\n\
-    Supports all functionality, extending it to include JSON and XML output.\n\nFor\
-    \ complete documentation visit https://logjack.hubrix.io/docs"
-  version: "0.9.0"
+  description: "A general-purpose logging API based on [log4js-node](https://github.com/log4js-node/log4js-node).\n\
+    Supports all log4js-node functionality, extending it to include JSON and XML output.\n\nFor\
+    \ complete documentation visit https://logjack.hubrix.io/"
+  version: "0.9.6"
   title: "Logjack"
   contact:
     email: "devops@hubrix.co"
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "logjack-sandbox.hubrix.io"
-basePath: "/0.9.0"
+host: "logjack.hubrix.io"
+basePath: "/logjack/v1.0.0/restapi/"
 schemes:
 - "https"
 paths:
   /log:
     post:
-      summary: "Logs the message based on current configuration JSON."
+      summary: "Log a message"
       operationId: "log"
       parameters:
       - name: "message"

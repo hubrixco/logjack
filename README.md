@@ -76,7 +76,7 @@ See the [log4js-node documentation](https://log4js-node.github.io/log4js-node/la
 
 A mechanism to define multiple Appenders for the logger. Logjack version 1.0.0 supports a single Category name: `default`.
 
-## Example JSON Configurations
+## Example Configurations
 
 **Output to console in JSON format:**
 ```

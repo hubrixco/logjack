@@ -22,11 +22,11 @@ paths:
       operationId: "log"
       parameters:
       - in: "body"
-        name: "config"
-        description: "configuration JSON"
+        name: "payload"
+        description: "message and configuration"
         required: true
         schema:
-          $ref: "#/definitions/Config"
+          $ref: "#/definitions/Payload"
       responses:
         200:
           description: "message logged successfully"
@@ -36,7 +36,7 @@ paths:
           description: "invalid input, configuration invalid"
       x-swagger-router-controller: "Default"
 definitions:
-  Config:
+  Payload:
     type: "object"
     required:
     - "appenders"

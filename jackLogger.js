@@ -20,9 +20,12 @@ class JackLogger{
             else
                 ;// built-in layout
         }
-
-        log4js.configure(configuration);
-
+        try{
+            log4js.configure(configuration);
+        }
+        catch(err){
+            console.log('Error: ' + err.message);
+        }
         this.baseLogger = log4js.getLogger();
     }
 

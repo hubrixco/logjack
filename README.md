@@ -1,4 +1,4 @@
-# Logjack ![GitHub release](https://img.shields.io/github/release/hubrixco/logjack.svg) [![GitHub license](https://img.shields.io/github/license/hubrixco/logjack.svg)](https://github.com/hubrixco/logjack/blob/master/LICENSE) [![GitHub issues](https://img.shields.io/github/issues/hubrixco/logjack.svg)](https://github.com/hubrixco/logjack/issues) ![node](https://img.shields.io/node/v/passport.svg)
+# Logjack\ ![GitHub release](https://img.shields.io/github/release/hubrixco/logjack.svg) [![GitHub license](https://img.shields.io/github/license/hubrixco/logjack.svg)](https://github.com/hubrixco/logjack/blob/master/LICENSE) [![GitHub issues](https://img.shields.io/github/issues/hubrixco/logjack.svg)](https://github.com/hubrixco/logjack/issues) ![node](https://img.shields.io/node/v/passport.svg)
 [![npm (scoped)](https://img.shields.io/npm/v/@hubrixco/logjack.svg)](https://www.npmjs.com/package/@hubrixco/logjack) [![Twitter Follow](https://img.shields.io/twitter/follow/hubrixco.svg?style=social&logo=twitter&label=Follow)](https://twitter.com/intent/follow?screen_name=hubrixco)
 
 A general-purpose logging API based on [log4js-node](https://github.com/log4js-node/log4js-node)
@@ -44,7 +44,9 @@ Swagger-ui is available on http://localhost:8080/docs
 
 You can change host and port by editing `restapi/index.js` - the `serverHost` and `serverPort` variables respectively.
 
-The one and only endpoint will be at ``
+The one and only endpoint will be at `http://localhost:8080/v1.0.0/log`
+
+
 
 The (very terse) REST API documentation is [here](https://logjack.hubrix.io/logjack/v1.0.0/).
 
@@ -64,7 +66,7 @@ these features as log4js-node extensions, rather than continuing to develop a st
 
 You can read about our future plans for Logjack <a target="_blank" href="https://www.hubrix.co/2018/02/hubrix-release-logjack/">here</a>.
 
-## Basics
+# Basics
 
 Except for the differences noted above, everything else in Logjack behaves as described in the [log4js-node documentation](https://log4js-node.github.io/log4js-node/index.html).
 
@@ -91,9 +93,9 @@ See the [log4js-node documentation](https://log4js-node.github.io/log4js-node/la
 
 ## Categories
 
-A mechanism to define multiple Appenders for the logger. Lifted verbatim from the [log4js-node documentation](https://log4js-node.github.io/log4js-node/terms.html):
+The Categories feature that allows multiple Appenders to be instantiated in log4js-node is not available in this release Logjack.
 
-> `Category` - a label for grouping log events. This can be based on module (e.g. ‘auth’, ‘payment’, ‘http’), or anything you like. Log events with the same category will go to the same appenders. Log4js supports a simple hierarchy for categories, using dots to separate layers - for example, log events in the category ‘myapp.submodule’ will use the appenders defined for ‘myapp’ if none are defined for ‘myapp.submodule’. The category for log events is defined when you get a Logger from log4js (`log4js.getLogger('somecategory')`).
+Only one Logger is created, using the `default` Category.
 
 ## Example Configurations
 
@@ -150,6 +152,7 @@ config = {
    }
  };
 ```
+<div style="display:block;margin:auto;width:150px;">![Hubrix](https://www.hubrix.co/wp-content/uploads/2018/01/Egg.v2.tm_.600x600.transbg-150x150.png "Coded with love by Hubrix")</div>
 
 ## Apache 2.0 license
 

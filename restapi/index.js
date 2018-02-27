@@ -7,7 +7,9 @@ var fs = require('fs'),
 var app = require('connect')();
 var swaggerTools = require('swagger-tools');
 var jsyaml = require('js-yaml');
-var serverPort = 8080;
+
+var serverPort = 3000;
+var serverHost = '127.0.0.1';
 
 // swaggerRouter configuration
 var options = {
@@ -20,9 +22,9 @@ var spec = fs.readFileSync(path.join(__dirname,'api/swagger.yaml'), 'utf8');
 var swaggerDoc = jsyaml.safeLoad(spec);
 
 // global error handler
-function errorHandler(err, req, res, next) {
+/*function errorHandler(err, req, res, next) {
    console.log('ERROR: ');
-}
+}*/
 
 // Initialize the Swagger middleware
 swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
@@ -30,14 +32,14 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   // Interpret Swagger resources and attach metadata to request - must be first in swagger-tools middleware chain
   app.use(middleware.swaggerMetadata());
 
-  app.use(errorHandler);
+  //app.use(errorHandler);
 
   // Route validated requests to appropriate controller
   app.use(middleware.swaggerRouter(options));
 
   // Start the server
-  http.createServer(app).listen(serverPort, function () {
-    console.log('Your server is listening on port %d (http://localhost:%d)', serverPort, serverPort);
+  http.createServer(app).listen(serverPort, serverHost, function () {
+    console.log('Your server is listening on: ' + serverHost + ":" + serverPort);
   });
 
 });

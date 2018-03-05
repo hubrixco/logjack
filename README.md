@@ -39,7 +39,6 @@ node restapi/index.js
 You should see:
 ```
 Your server is listening on port 8080 (http://localhost:8080)
-Swagger-ui is available on http://localhost:8080/docs
 ```
 
 You can change host and port by editing `restapi/index.js` - the `serverHost` and `serverPort` variables respectively.

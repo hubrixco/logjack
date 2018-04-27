@@ -1,6 +1,6 @@
 {
   "name": "@hubrixco/logjack",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A general-purpose logging API based on log4js-node",
   "main": "index.js",
   "repository": "github:hubrixco/logjack",
@@ -14,9 +14,9 @@
   },
   "dependencies": {
     "chai": "^4.1.2",
-    "chai-http": "^3.0.0",
+    "chai-http": "^4.0.0",
     "connect": "^3.6.6",
-    "mocha": "^5.0.1",
+    "mocha": "^5.1.1",
     "swagger-tools": "^0.10.3",
     "xml-writer": "^1.7.0",
     "log4js": "^2.5.3"
